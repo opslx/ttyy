@@ -24,7 +24,6 @@ jobs:
 
     - name: Build
       run: |
-        npm install pnpm
-        pnpm install vite
-        pnpm install
-        npx vite
+        npm install vite
+        npm install
+        npx vite build
