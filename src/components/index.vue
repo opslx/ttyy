@@ -94,6 +94,7 @@ transition: background-color var(--duration);
 
 .menu{
 bottom: -6vh;
+margin-left: -2.5vw;
 display: inline-flex;
 width: 100vw;
 font-size: 1.5em;

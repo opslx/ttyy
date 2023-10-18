@@ -46,9 +46,7 @@
                 <el-col :span="24">
                     <el-divider />
                 </el-col>
-            </el-row>
-            <el-row  justify="center">
-                <el-col :span="24">
+                <el-col id="book-card-user" :span="24">
                     <el-row justify="center">
                         <el-col :span="10" :offset="2">
                             <el-space alignment="center" direction="vertical">
@@ -70,7 +68,7 @@
 </el-row>
 <el-row justify="center">
     <el-col :span="20">
-        <el-card shadow="never" id="home-buttom">
+        <el-card @click="toReadWord" shadow="never" id="home-buttom">
             <div id="home-buttom-text" > 	
                 开始背单词吧！
             </div>
@@ -100,7 +98,6 @@ function selectBook(){
     router.push("/book")
 
 }
-console.log(bookId);
 
 getBook(bookId).then((res) => {
     console.log(res);
@@ -111,6 +108,15 @@ getBook(bookId).then((res) => {
     
 })
 
+function toReadWord(){
+
+    router.push({
+        path: '/word',
+        params:{
+          bookId: bookId
+        }
+    })
+}
 
 
 
@@ -142,13 +148,16 @@ getBook(bookId).then((res) => {
 }
 #home-book-card{
     border: none;
-    margin-top: 8vh;
+    height: 45vh;
+    margin-top: 5vh;
     border-radius:1em;
 }
+
+
 #home-buttom{
     height: 3em;
     border: none;
-    margin-top: 15vh;
+    margin-top: 5vh;
     border-radius:2em;
     background-color: #F7B200;
 }
