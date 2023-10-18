@@ -36,6 +36,11 @@ export const routes: Array<RouteRecordRaw> = [
     name: 'Sign',
     component:()=>import('../views/sign/index.vue'),
   },
+  {
+    path: '/word/:bookID',
+    name: 'Word',
+    component:()=>import('../views/word/index.vue'),
+  },
 ]
 
 const router = createRouter({
