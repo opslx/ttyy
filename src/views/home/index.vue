@@ -37,7 +37,7 @@
                         </el-progress>
                     </el-col>
                     <el-col  id="book-progress-number">
-                        <el-text type="info" class="mx-1" size="small">{{ book.number }} </el-text>
+                        <el-text type="info" class="mx-1" size="small">{{ book.book_word_count }} </el-text>
                     </el-col>
                 </el-row>
                 </el-col>
@@ -50,13 +50,13 @@
                     <el-row justify="center">
                         <el-col :span="10" :offset="2">
                             <el-space alignment="center" direction="vertical">
-                                <h1>5</h1>
+                                <h1>{{ book.user_word_view_days }}</h1>
                                 <el-text type="info" class="mx-1" size="small">总学习天数 </el-text>
                             </el-space>
                         </el-col>
                         <el-col alignment="center" :span="8" :offset="4">
                             <el-space direction="vertical">
-                                <h1>222</h1>
+                                <h1>{{ book.user_word_count }}</h1>
                                 <el-text type="info" class="mx-1" size="small">学习单词 </el-text>
                             </el-space>
                         </el-col>
@@ -91,6 +91,9 @@ let book = ref({
     total:"",
     tag:"",
     name:'',
+    book_word_count:"",
+    user_word_count:"",
+    user_word_view_days:""
 })
 let input1 = ref('')
 const router = useRouter()
