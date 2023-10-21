@@ -7,7 +7,7 @@ import {setCookieRefresh,setCookieToken} from "@/utils/cookie";
 export const useBasicStore = defineStore('basic', {
   state: () => {
     return {
-      bookId:1,
+      bookId:0,
       token: null,
       refresh:null,
       userId:null,

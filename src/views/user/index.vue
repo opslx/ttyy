@@ -83,17 +83,18 @@ function login(){
 </script>
 <style lang="scss">
 .box-card{
-    margin-top: 1vh;
+    margin-top: 5vh;
     border: none;
     border-radius: 1em;
 
 }
 .setting-card{
+    margin-top: -3vh;
     border: none;
     border-radius: 1em;
 
 }
 .user-card-item{
-    margin-top: 3.5vh;
+    margin-top: 5vh;
 }
 </style>

@@ -37,7 +37,7 @@ export const routes: Array<RouteRecordRaw> = [
     component:()=>import('../views/sign/index.vue'),
   },
   {
-    path: '/word/:bookID',
+    path: '/word/:bookId',
     name: 'Word',
     component:()=>import('../views/word/index.vue'),
   },

@@ -17,6 +17,7 @@ service.interceptors.request.use(
         cancel
       })
     })
+    console.log(req)
     //设置token到header
     // @ts-ignore
     //   req.headers['AUTHORIZE_TOKEN'] = token
@@ -95,10 +96,11 @@ service.interceptors.response.use(
             removeCookieToken()
             localStorage.clear()
     }
-    ElMessage.error({
-      message: err,
-      duration: 2 * 1000
-    })
+    // ElMessage.error({
+    //   message: err,
+    //   duration: 2 * 1000
+    // })
+  console.log(err)
     return Promise.reject(err)
   }
 )

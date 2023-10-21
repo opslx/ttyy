@@ -15,3 +15,19 @@ export function getBook (data:any) {
 		url: `/book/book/${data}/`,
 	})
 }
+
+export function getBookWord (data:object) {
+	return request({
+		method: "GET", 
+		url: `/book/word/`,
+		data:data
+	})
+}
+
+export function getWord (wordId:number,data:object) {
+	return request({
+		method: "GET", 
+		url: `/book/word/${wordId}/`,
+		data:data
+	})
+}

@@ -54,7 +54,7 @@ import {computed} from "vue"
 let books = ref([])
 let book = ref(0)
 const router = useRouter()
-const searchKeyword = ref('CET')
+const searchKeyword = ref('')
 
 getAllBook().then((res) => {
   books.value = res.data
@@ -92,7 +92,9 @@ const filteredItems:any = computed(() => {
   margin-top: 1em;
 }
 .search{
+  margin-top: 3vh;
   margin-bottom: 2em;
+  border-radius: 1em;
 }
 .book-card{
   border: none;

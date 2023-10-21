@@ -1,4 +1,4 @@
-<template>
+<template scroll="no" id="home-body">
   <el-card class="home-title-card">
     <el-row class="home-title-span">
         <el-col style="margin-top:3vh">
@@ -81,9 +81,10 @@ import { useRouter } from 'vue-router'
 import { ref } from 'vue';
 import { Search } from '@element-plus/icons-vue';
 import { useBasicStore } from '@/store/basic'; 
-import {getBook} from '@/api/book'
+import {getBook,getAllBook} from '@/api/book'
 
 let {bookId} = useBasicStore()
+const store = useBasicStore()
 let book = ref({
     title:"",
     image:"",
@@ -101,22 +102,27 @@ function selectBook(){
     router.push("/book")
 
 }
-
+if (bookId === 0){
+    getAllBook().then(res => {
+                console.log(res.data[0].id)
+        store.setBook(res.data[0].id)
+    })
+}
+console.log(bookId)
 getBook(bookId).then((res) => {
-    console.log(res);
     
     book.value = res.data
 }).catch((err) => {
     console.log(err);
-    
+
 })
 
 function toReadWord(){
-
+    console.log(bookId)
     router.push({
-        path: '/word',
+        path: '/word/' + bookId,
         params:{
-          bookId: bookId
+            "bookId":bookId
         }
     })
 }
@@ -125,13 +131,20 @@ function toReadWord(){
 
 </script>
 <style>
+html{
+    overflow:hidden;
+}
+#home-body{
+    overflow: hidden;
+    
+}
 .home-title-card{
   border: none;
   height: 27vh;
-  margin-left: -10px;
-  margin-right: -10px;
+  margin-left: -5px;
+  margin-right: -5px;
   margin-top: -5vh;
-  border-radius: 1.5em;
+  border-radius: 2em;
   background-color:#4865FF;
 } 
 .home-title-span{
