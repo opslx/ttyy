@@ -104,11 +104,12 @@ function selectBook(){
 }
 if (bookId === 0){
     getAllBook().then(res => {
-                console.log(res.data[0].id)
+        book.value = res.data[0]
         store.setBook(res.data[0].id)
+        bookId = res.data[0].id
     })
 }
-console.log(bookId)
+
 getBook(bookId).then((res) => {
     
     book.value = res.data

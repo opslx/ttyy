@@ -25,7 +25,7 @@
           <el-text tag="b">{{i.name}}</el-text>
           <el-text class="mx-1" type="info">{{i.tag}}</el-text>
           <el-text ></el-text>
-          <el-text  class="mx-1">{{i.number}}词</el-text>
+          <el-text  class="mx-1">{{i.book_word_count}}词</el-text>
           </el-space>
       </el-col>
     </el-row>
