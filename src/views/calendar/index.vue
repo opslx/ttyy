@@ -21,7 +21,6 @@
 <script setup lang="ts">
 import { getUserCalendar } from '@/api/user';
 import { ref } from 'vue';
-let  word_count = ref(0)
 let calendar = ref([])
 getUserCalendar().then(res => {
   console.log(res.data);

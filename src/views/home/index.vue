@@ -9,6 +9,7 @@
   <el-row  class="home-title-input-span">
         <el-col :span="20" :offset="2">
             <el-input
+                clearable
                 style="height:6vh"
                 v-model="input1"
                 size="large"

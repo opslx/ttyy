@@ -1,4 +1,4 @@
-<template scroll="no">
+<template >
     <el-row justify="center">
         <el-col :span="22">
             <el-card class="word-body-card">
@@ -20,7 +20,8 @@
                 <el-row>
                     <el-col :span="8">
                         <el-text class="mx-1" type="info">{{word.ukphone}}</el-text>
-                        <svg  style="margin-left: 2vw;" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="20" height="20.00030517578125" viewBox="0 0 30 40.00030517578125" fill="none"><g opacity="1"  transform="translate(0 0.00030517578125)  rotate(0)"><g opacity="1"  transform="translate(0 0)  rotate(0)"><path id="Fill 1" fill-rule="evenodd" style="fill:#4865FF" opacity="1" d="M25.9641 10.2865L25.6841 10.0165C25.3241 9.65646 24.7841 9.65646 24.4141 10.0165C24.0541 10.3865 24.0541 10.9265 24.4141 11.2865L24.6941 11.5665C24.9641 11.8365 25.1441 12.1065 25.3241 12.4665L25.4141 12.5565C27.1441 15.1965 26.7741 17.5565 24.3241 20.1865C23.9641 20.5465 23.9641 21.0965 24.3241 21.4565C24.5041 21.6365 24.6941 21.7265 24.9641 21.7265C25.2341 21.7265 25.4141 21.6365 25.5941 21.4565C28.5941 18.1865 29.0441 14.8265 26.8641 11.5665C26.5941 11.1065 26.3241 10.6565 25.9641 10.2865Z"></path><path id="路径" fill-rule="evenodd" style="fill:#4865FF" opacity="1" d="M29.225 5.47789C28.865 5.11789 28.325 5.11789 27.955 5.47789C27.595 5.84789 27.595 6.38789 27.955 6.74789L28.595 7.38789C29.045 8.01789 29.595 8.56789 30.045 9.28789C33.495 14.4679 32.765 19.4579 27.955 24.4479C27.595 24.8179 27.595 25.3579 27.955 25.7179C28.135 25.9079 28.325 25.9979 28.595 25.9979C28.865 25.9979 29.045 25.9079 29.225 25.7179C34.585 20.1879 35.405 14.1979 31.585 8.38789C31.045 7.56789 30.495 6.93789 30.045 6.29789C29.775 5.93789 29.505 5.65789 29.225 5.47789Z"></path><path id="路径" fill-rule="evenodd" style="fill:#4865FF" opacity="1" d="M14.61 0.94L7.71 6.84L4.45 6.84C2 6.84 0 8.93 0 11.29L0 20.18C0 22.73 2 24.63 4.45 24.63L7.26 24.63L14.61 30.44C15.34 30.99 16.16 31.26 16.88 31.26C17.25 31.26 17.7 31.17 17.97 30.99C18.97 30.53 19.52 29.44 19.52 27.99L19.52 3.3C19.52 1.85 18.97 0.67 17.88 0.22C16.88 -0.24 15.61 0.03 14.61 0.94Z"></path><path id="路径" fill-rule="evenodd" style="fill:#4865FF" opacity="1" d="M17.6954 3.4813C17.6954 2.7613 17.4254 2.2113 17.0654 2.0313C16.7054 1.8513 16.2454 2.0313 15.7054 2.4813L8.34543 8.7513L4.44543 8.7513C2.99543 8.7513 1.81543 9.9313 1.81543 11.3813L1.81543 20.2713C1.81543 21.7313 2.99543 22.9113 4.44543 22.9113L7.89543 22.9113L15.7054 29.0813C16.2454 29.4413 16.7954 29.6213 17.1554 29.4413C17.5154 29.2613 17.6954 28.8113 17.6954 28.0813L17.6954 3.4813Z"></path></g></g></svg>
+                        <audio :id="word.id" :src="`https://dict.youdao.com/dictvoice?audio=${word.word}&type=2`"></audio>
+                        <svg  @click="playAudio(word.id)"   style="margin-left: 2vw;" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="20" height="20.00030517578125" viewBox="0 0 30 40.00030517578125" fill="none"><g opacity="1"  transform="translate(0 0.00030517578125)  rotate(0)"><g opacity="1"  transform="translate(0 0)  rotate(0)"><path id="Fill 1" fill-rule="evenodd" style="fill:#4865FF" opacity="1" d="M25.9641 10.2865L25.6841 10.0165C25.3241 9.65646 24.7841 9.65646 24.4141 10.0165C24.0541 10.3865 24.0541 10.9265 24.4141 11.2865L24.6941 11.5665C24.9641 11.8365 25.1441 12.1065 25.3241 12.4665L25.4141 12.5565C27.1441 15.1965 26.7741 17.5565 24.3241 20.1865C23.9641 20.5465 23.9641 21.0965 24.3241 21.4565C24.5041 21.6365 24.6941 21.7265 24.9641 21.7265C25.2341 21.7265 25.4141 21.6365 25.5941 21.4565C28.5941 18.1865 29.0441 14.8265 26.8641 11.5665C26.5941 11.1065 26.3241 10.6565 25.9641 10.2865Z"></path><path id="路径" fill-rule="evenodd" style="fill:#4865FF" opacity="1" d="M29.225 5.47789C28.865 5.11789 28.325 5.11789 27.955 5.47789C27.595 5.84789 27.595 6.38789 27.955 6.74789L28.595 7.38789C29.045 8.01789 29.595 8.56789 30.045 9.28789C33.495 14.4679 32.765 19.4579 27.955 24.4479C27.595 24.8179 27.595 25.3579 27.955 25.7179C28.135 25.9079 28.325 25.9979 28.595 25.9979C28.865 25.9979 29.045 25.9079 29.225 25.7179C34.585 20.1879 35.405 14.1979 31.585 8.38789C31.045 7.56789 30.495 6.93789 30.045 6.29789C29.775 5.93789 29.505 5.65789 29.225 5.47789Z"></path><path id="路径" fill-rule="evenodd" style="fill:#4865FF" opacity="1" d="M14.61 0.94L7.71 6.84L4.45 6.84C2 6.84 0 8.93 0 11.29L0 20.18C0 22.73 2 24.63 4.45 24.63L7.26 24.63L14.61 30.44C15.34 30.99 16.16 31.26 16.88 31.26C17.25 31.26 17.7 31.17 17.97 30.99C18.97 30.53 19.52 29.44 19.52 27.99L19.52 3.3C19.52 1.85 18.97 0.67 17.88 0.22C16.88 -0.24 15.61 0.03 14.61 0.94Z"></path><path id="路径" fill-rule="evenodd" style="fill:#4865FF" opacity="1" d="M17.6954 3.4813C17.6954 2.7613 17.4254 2.2113 17.0654 2.0313C16.7054 1.8513 16.2454 2.0313 15.7054 2.4813L8.34543 8.7513L4.44543 8.7513C2.99543 8.7513 1.81543 9.9313 1.81543 11.3813L1.81543 20.2713C1.81543 21.7313 2.99543 22.9113 4.44543 22.9113L7.89543 22.9113L15.7054 29.0813C16.2454 29.4413 16.7954 29.6213 17.1554 29.4413C17.5154 29.2613 17.6954 28.8113 17.6954 28.0813L17.6954 3.4813Z"></path></g></g></svg>
                     </el-col>
                     </el-row>
                     <template v-if="word.picture !== null">
@@ -87,25 +88,16 @@ import { ref } from 'vue';
 import {getBookWord,getWord} from "@/api/book"
 import {updateUserCollect} from "@/api/user"
 import { useRouter } from 'vue-router'
-
+import { ElMessage } from 'element-plus'
+import { useBasicStore } from '@/store/basic';
+import {word} from "@/utils/export"
+let {getUserInfo}  = useBasicStore()
 const router = useRouter()
 const book_data = {book:router.currentRoute.value.params.bookId}
-const word = ref({
-    word:0,
-    id:'',
-    picture:'',
-    last:'',
-    next:'',
-    usphone:'',
-    ukphone:'',
-    trans:[{}],
-    sentence:[{}],
-    user_collect:false,
-    syno:[{}]
-
-
-})
 const collect = ref(false)
+let currentAudioId:any = null;
+
+
 function user_collect(){
     collect.value = true
 }
@@ -124,13 +116,60 @@ function getClickWord(wordId:any){
     })
 }
 
+function user_notice(collect_status:boolean){
+    if (getUserInfo){
+        if(collect_status){
+            ElMessage.success({
+                message: '单词已收藏',
+                duration:1000
+            })
+        }else{
+            ElMessage.warning({
+                message: '已取消收藏',
+                duration:1000
+            })
+        }
+    }else{
+        ElMessage.error({
+                message: "请登录",
+                duration:1000
+        }) 
+    }
+}
+
 function update_user_collect(collect_status:boolean){
     let par = {is_collect:collect_status}
-    word.value.user_collect = collect_status
+    // word.value.user_collect = collect_status
+    user_notice(collect_status)
     updateUserCollect(word.value.id,par).then(res => (
         word.value.user_collect = res.data.is_collect
+
     ))
 }
+
+const onAudioEnded = () => {  
+    console.log(`音频 ${currentAudioId} 播放完成`);  
+    currentAudioId = null;  
+};    
+
+function playAudio(id: string) {  
+      const audioElement = document.getElementById(id);  
+      if (audioElement) {  
+        if (currentAudioId){
+            const oldAudioElement = document.getElementById(currentAudioId); 
+            console.log(`音频 ${currentAudioId} 播放暂停`);
+            // @ts-ignore    
+            oldAudioElement.pause()
+        }
+        currentAudioId = id; 
+        // @ts-ignore  
+        audioElement.play();  
+        audioElement.addEventListener('ended', onAudioEnded)
+      } else {  
+        console.error(`无法找到id为 ${id} 的音频元素`);  
+      }  
+    };  
+
 </script>
 <style lang="scss" scoped>
 .word-body-card{

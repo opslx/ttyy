@@ -31,6 +31,13 @@ export function getUserCalendar () {
   })
 }
 
+export function getUserCollect () {
+  return request({
+    method: "GET", 
+    url: '/user/user_collect/',
+  })
+}
+
 export function updateUserCollect (wordId:any,data:object) {
   return request({
     method: "PUT", 

@@ -34,7 +34,7 @@
         shadow="never"
          class="box-card">
          <template v-for="item in UserSettingItem">
-            <el-row  class="user-card-item" justify="start" >
+            <el-row @click="router_to_path(item.path)"  class="user-card-item" justify="start" >
                 <el-col :span="4" >
                     <el-image style="width: 1.7em; height: 1.7em" :src="item.image" fit="fill" />      
                 </el-col>
@@ -51,30 +51,24 @@
 import {useRouter} from 'vue-router'
 import { useBasicStore } from '@/store/basic'; 
 import { ref } from 'vue'
-// import {getCookieToken} from '@/utils/cookie'
-// import {getUserInfo} from '@/api/user'
-// import type { AxiosResponse } from 'axios';
 
-
+const router =  useRouter()
 const {userInfo,getUserInfo} = useBasicStore()
 let userinfo = ref(userInfo)
 
-// const token = getCookieToken()
-// if (token !== null){
-//     getUserInfo().then((res:AxiosResponse) => {
-//         console.log(res)
-//         userinfo.value = res.userinfo
 
-//     })
-// }
+function router_to_path(path:string){
+    router.push(path)
+
+}
 
 const UserSettingItem = [
-    {image:'word_book.png',text:"单词书"},
-    {image:'word_collection.png',text:"单词收藏"},
-    {image:'glossary.png',text:"生词本"},
-    {image:'setting.png',text:"设置"},
+    {image:'word_book.png',text:"单词书",path:"/home"},
+    {image:'word_collection.png',text:"单词收藏",path:"/collect"},
+    {image:'glossary.png',text:"生词本",path:"/collect"},
+    {image:'setting.png',text:"设置",path:"/home"},
 ]
-const router =  useRouter()
+
 function login(){
     router.push('/login')
 

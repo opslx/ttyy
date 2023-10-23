@@ -41,6 +41,11 @@ export const routes: Array<RouteRecordRaw> = [
     name: 'Word',
     component:()=>import('../views/word/index.vue'),
   },
+  {
+    path: '/collect',
+    name: 'Collect',
+    component:()=>import('../views/collect/index.vue'),
+  },
 ]
 
 const router = createRouter({
