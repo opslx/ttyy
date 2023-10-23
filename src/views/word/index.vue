@@ -67,15 +67,15 @@
     </el-row>
     </template>
     <el-row justify="center">
-    <el-col :span="10" :offset="1">
-        <el-card @click="getClickWord(word.last)" shadow="never" class="word-buttom" id="word-previous-buttom">
+    <el-col @click.prevent="getClickWord(word.last)" :span="10" :offset="1">
+        <el-card  shadow="never" class="word-buttom" id="word-previous-buttom">
             <div class="word-next-buttom-text" > 	
                 previous
             </div>
         </el-card>
     </el-col>
-    <el-col :span="10" :offset="1">
-        <el-card @click="getClickWord(word.next)" shadow="never" class="word-buttom"  id="word-next-buttom">
+    <el-col @click.prevent="getClickWord(word.next)" :span="10" :offset="1">
+        <el-card  shadow="never" class="word-buttom"  id="word-next-buttom">
             <div class="word-next-buttom-text" > 	
                 next
             </div>
@@ -172,6 +172,12 @@ function playAudio(id: string) {
 
 </script>
 <style lang="scss" scoped>
+
+html{
+    background-color: #FFFFFF!important;
+    overflow:auto;
+}
+
 .word-body-card{
     background-color: #FFFFFF;
     border: none;
@@ -184,7 +190,7 @@ function playAudio(id: string) {
     position:fixed;
     height: 2.8em;
     border: none;
-    top: 89vh;
+    top: 92%;
     width: 40vw;
     border-radius:1.5em;
     
@@ -204,6 +210,7 @@ function playAudio(id: string) {
 }
 .word-text-span{
     margin-top: 2vh;
+    overflow:auto;
 }
 .word-text-item{
     margin-top: 1vh;

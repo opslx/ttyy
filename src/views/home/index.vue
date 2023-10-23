@@ -67,9 +67,9 @@
         </el-card>
     </el-col>
 </el-row>
-<el-row justify="center">
+<el-row @click="toReadWord" justify="center">
     <el-col :span="20">
-        <el-card @click="toReadWord" shadow="never" id="home-buttom">
+        <el-card  shadow="never" id="home-buttom">
             <div id="home-buttom-text" > 	
                 开始背单词吧！
             </div>
@@ -166,7 +166,7 @@ html{
 }
 #home-book-card{
     border: none;
-    height: 45vh;
+    height: 40vh;
     margin-top: 5vh;
     border-radius:1em;
 }

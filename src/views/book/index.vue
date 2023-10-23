@@ -103,7 +103,7 @@ const filteredItems:any = computed(() => {
 #book-buttom{
     position: fixed;
     height: 3em;
-    top: 92.5vh;
+    top: 90%;
     width: 80vw;
     border: none;
     border-radius:2em;
