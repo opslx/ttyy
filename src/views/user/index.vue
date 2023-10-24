@@ -9,7 +9,7 @@
                 <el-avatar :size="50" :src="userinfo.avatar" />
             </el-col>
             <template v-if="getUserInfo">
-            <el-col style="margin-top:1em;" :span="8" :offset="12">
+            <el-col style="margin-top:1em;" :span="14" :offset="6">
                 <el-text size="large" tag="b"> <div style="color: #FFFFFF">{{userInfo.username}}</div></el-text>   
             </el-col>
             </template>
@@ -66,7 +66,7 @@ const UserSettingItem = [
     {image:'word_book.png',text:"单词书",path:"/home"},
     {image:'word_collection.png',text:"单词收藏",path:"/collect"},
     {image:'glossary.png',text:"生词本",path:"/collect"},
-    {image:'setting.png',text:"设置",path:"/home"},
+    {image:'setting.png',text:"设置",path:"/setting"},
 ]
 
 function login(){

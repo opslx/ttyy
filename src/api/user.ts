@@ -1,9 +1,17 @@
 import request from '@/utils/request'
 
-export function setUser (data:any) {
+export function userLogin (data:any) {
 	return request({
 		method: "POST", 
-		url: '/user/user/',
+		url: '/user/login/',
+		data: data
+	})
+}
+
+export function userSign (data:any) {
+	return request({
+		method: "POST", 
+		url: '/user/sign/',
 		data: data
 	})
 }
@@ -38,6 +46,13 @@ export function getUserCollect () {
   })
 }
 
+export function getUserCollectWord (userWordId:any) {
+  return request({
+    method: "GET", 
+    url: `/user/user_collect/${userWordId}/`,
+  })
+}
+
 export function updateUserCollect (wordId:any,data:object) {
   return request({
     method: "PUT", 
@@ -45,3 +60,4 @@ export function updateUserCollect (wordId:any,data:object) {
     data:data
   })
 }
+

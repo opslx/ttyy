@@ -39,37 +39,45 @@
             </el-col>
         </el-row>
     </el-form>
-<el-row style="margin-top:2vh"  justify="center">
-    <el-col style="text-align:end" :span="20">
-        <el-text tag="b" class="mx-1" type="info">忘记密码</el-text>
-    </el-col>
-</el-row>
-<el-row  class="SI" justify="center">
-    <el-col @click="submitForm(ruleFormRef)" class="login-buttom" :span="20">
-        <div style="text-align:center;margin-top:0.6rem;color: #FFFFFF"> 	
-            {{LoginMsg}}
-         </div>
-    </el-col>
-</el-row>
-</div>
 
-<el-row style="margin-top:2vh"  justify="center">
-    <el-col style="text-align:center" :span="20">
-        <el-text class="mx-1" type="primary">创建账户</el-text>
-    </el-col>
-</el-row>
+  <template v-if="!Sign">
+    <el-row style="margin-top:2vh"  justify="center">
+        <el-col style="text-align:end" :span="20">
+            <el-text tag="b" class="mx-1" type="info">忘记密码</el-text>
+        </el-col>
+    </el-row>
+  </template>
+  <el-row  class="SI" justify="center">
+      <el-col @click.prevent="submitForm(ruleFormRef)" class="login-buttom" :span="20">
+          <div style="text-align:center;margin-top:0.6rem;color: #FFFFFF"> 	
+              {{LoginMsg}}
+          </div>
+      </el-col>
+  </el-row>
+  </div>
+
+  <template v-if="!Sign">
+    <el-row @click.prevent="switchSign" style="margin-top:2vh"  justify="center">
+        <el-col style="text-align:center" :span="20">
+            <el-text class="mx-1" type="primary">创建账户</el-text>
+        </el-col>
+    </el-row>
+  </template>
 </template>
 <script setup lang="ts">
 import { reactive,ref } from 'vue'
 import { User,Lock } from '@element-plus/icons-vue'
 import type { FormInstance, FormRules } from 'element-plus'
-import { setUser } from '@/api/user';
+import { userLogin,userSign } from '@/api/user';
 import { useBasicStore } from '@/store/basic'; 
 import { useRouter } from 'vue-router'
+import { ElMessage } from 'element-plus'
 
 const store = useBasicStore()
 const route = useRouter()
 let buttonColor = ref('#F7B200')
+const Sign = ref(false)
+let LoginMsg = ref("登录")
 
 interface RuleForm {
   email: string
@@ -92,28 +100,74 @@ const rules = reactive<FormRules<RuleForm>>({
   ]
 })
 
-const submitForm = async (formEl: FormInstance | undefined) => {
-  if (!formEl) return
-  await formEl.validate((valid, fields) => {
-    if (valid) {
-      console.log(ruleForm);
+function login(){
       
-      setUser(ruleForm).then((res) => {
-        store.setToken(res.data.token)
-        store.setUserInfo(res.data.userinfo)
-        route.push("/")
+  userLogin(ruleForm).then((res) => {
+    if (res.data.code !== 200){
+          ElMessage.warning({
+              message: res.data.msg,
+              duration:1000
+          })
+        }else{
+          store.setToken(res.data.token)
+          store.setUserInfo(res.data.userinfo)
+          ElMessage.success({
+              message: "登录成功",
+              duration:1000
+          })
+          route.replace("/")
+        }
         // useBasicStore().setRefresh(res.token)
       }).catch((err) => {
         console.log(err);
         
       })
+}
+function sign(){
+  userSign(ruleForm).then((res) => {
+        if (res.data.code !== 201){
+          ElMessage.warning({
+                message: res.data.msg,
+                duration:1000
+        })
+        }else{
+          store.setToken(res.data.token)
+          store.setUserInfo(res.data.userinfo)
+          ElMessage.success({
+              message: "注册成功",
+              duration:1000
+          })
+          route.replace("/grade")
+        }
+        // useBasicStore().setRefresh(res.token)
+      }).catch((err) => {
+        console.log(err);
+        
+      })
+}
+
+
+const submitForm = async (formEl: FormInstance | undefined) => {
+  if (!formEl) return
+  await formEl.validate((valid, fields) => {
+    if (valid) {
+      if (Sign.value){
+        sign()
+      }else{
+        login()
+      }
     } else {
       console.log('error submit!', fields)
     }
   })
 }
 
-let LoginMsg = ref("登录")
+function switchSign(){
+  Sign.value = true
+  LoginMsg.value = "注册"
+  buttonColor.value = "#4865FF"
+}
+
 
 
 </script>

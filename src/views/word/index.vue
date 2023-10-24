@@ -86,34 +86,71 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import {getBookWord,getWord} from "@/api/book"
-import {updateUserCollect} from "@/api/user"
+import {updateUserCollect,getUserCollectWord} from "@/api/user"
 import { useRouter } from 'vue-router'
 import { ElMessage } from 'element-plus'
 import { useBasicStore } from '@/store/basic';
 import {word} from "@/utils/export"
 let {getUserInfo}  = useBasicStore()
 const router = useRouter()
-const book_data = {book:router.currentRoute.value.params.bookId}
+const routerName = router.currentRoute.value.name
 const collect = ref(false)
 let currentAudioId:any = null;
 
+function get_user_collect_word(userWordId:any){
+    if (userWordId){
+        getUserCollectWord(userWordId).then(res => {
+            word.value = res.data.word
+            word.value.user_collect = res.data.is_collect
+            word.value.next = res.data.next
+            word.value.last = res.data.previous
+        })
+    }else{
+        ElMessage.success({
+                message: '已无更多单词',
+                duration:1000
+        })
+    }
+}
+
+function get_word(wordId:any,book_data:object){
+    if (wordId){
+    getWord(wordId,book_data).then(res => {
+    word.value = res.data
+    }).catch(err => {
+        console.log(err);
+        
+    })}else{
+        ElMessage.success({
+                message: '已无更多单词',
+                duration:1000
+        })
+    }
+}
+
+if (routerName === "Word"){
+    const book_data = {book:router.currentRoute.value.params.bookId}
+    getBookWord(book_data).then(res => {
+    word.value = res.data
+    }).catch(err => {
+        console.log(err);
+        
+    })
+}else{
+    get_user_collect_word(router.currentRoute.value.params.userWordId)
+}
 
 function user_collect(){
     collect.value = true
 }
-getBookWord(book_data).then(res => {
-    console.log(res.data)
-    word.value = res.data
-}).catch(err => {
-    console.log(err);
-    
-})
 
 function getClickWord(wordId:any){
-    getWord(wordId,book_data).then(res => {
-
-        word.value = res.data
-    })
+    if (routerName === "Word"){
+        const book_data = {book:router.currentRoute.value.params.bookId}
+        get_word(wordId,book_data)
+    }else{
+        get_user_collect_word(wordId)
+    }
 }
 
 function user_notice(collect_status:boolean){

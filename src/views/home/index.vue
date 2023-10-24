@@ -67,9 +67,9 @@
         </el-card>
     </el-col>
 </el-row>
-<el-row @click="toReadWord" justify="center">
-    <el-col :span="20">
-        <el-card  shadow="never" id="home-buttom">
+<el-row style="margin-top: 15%;" justify="center">
+    <el-col  :span="20">
+        <el-card  @click.prevent="toReadWord"  shadow="never" id="home-buttom">
             <div id="home-buttom-text" > 	
                 开始背单词吧！
             </div>
@@ -85,6 +85,7 @@ import { useBasicStore } from '@/store/basic';
 import {getBook,getAllBook} from '@/api/book'
 
 let {bookId} = useBasicStore()
+const router = useRouter()
 const store = useBasicStore()
 let book = ref({
     title:"",
@@ -98,7 +99,7 @@ let book = ref({
     user_word_view_days:""
 })
 let input1 = ref('')
-const router = useRouter()
+
 function selectBook(){
     router.push("/book")
 
@@ -167,7 +168,7 @@ html{
 #home-book-card{
     border: none;
     height: 40vh;
-    margin-top: 5vh;
+    /* margin-top: 5vh; */
     border-radius:1em;
 }
 
@@ -175,7 +176,7 @@ html{
 #home-buttom{
     height: 3em;
     border: none;
-    margin-top: 5vh;
+    /* margin-top: 5vh; */
     border-radius:2em;
     background-color: #F7B200;
 }

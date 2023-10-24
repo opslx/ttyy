@@ -23,7 +23,7 @@
         <el-col :span="17"> 
           <el-space alignment="normal" direction="vertical">
           <el-text tag="b">{{i.name}}</el-text>
-          <el-text class="mx-1" type="info">{{i.tag}}</el-text>
+          <el-text class="mx-1" type="info" size="small">{{i.description}}</el-text>
           <el-text ></el-text>
           <el-text  class="mx-1">{{i.book_word_count}}词</el-text>
           </el-space>
@@ -37,7 +37,7 @@
     <el-col :span="20">
         <el-card @click="selectedBook()" shadow="never" id="book-buttom">
             <div id="book-buttom-text" > 	
-                更换词书
+                {{buttom_text}}
             </div>
         </el-card>
     </el-col>
@@ -45,22 +45,35 @@
 </template>
 <script setup lang="ts">
 import {  Search } from '@element-plus/icons-vue'
-import {getAllBook} from '@/api/book'
+import {getAllBook,getTagBook} from '@/api/book'
 import { useBasicStore } from '@/store/basic'; 
 import { ref } from 'vue';
 import { useRouter } from 'vue-router'
 import {computed} from "vue"
-
-let books = ref([])
-let book = ref(0)
+const buttom_text = ref('更换词书')
+const books = ref([])
+const book = ref(0)
 const router = useRouter()
+const routerName = router.currentRoute.value.name
 const searchKeyword = ref('')
 
-getAllBook().then((res) => {
-  books.value = res.data
-}).catch((err) => {
-  console.log(err);
-})
+if (routerName === "TagBook"){
+  buttom_text.value = '开始学习'
+  const tag = router.currentRoute.value.params.tag
+  getTagBook({tag:tag}).then((res) => {
+    books.value = res.data
+  }).catch((err) => {
+    console.log(err);
+  })
+
+}else{
+
+  getAllBook().then((res) => {
+    books.value = res.data
+  }).catch((err) => {
+    console.log(err);
+  })
+}
 
 
 let store = useBasicStore()

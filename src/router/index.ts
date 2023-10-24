@@ -27,8 +27,8 @@ export const routes: Array<RouteRecordRaw> = [
     component:()=>import('../views/book/index.vue'),
   },
   {
-    path: '/book',
-    name: 'Book',
+    path: '/book/:tag',
+    name: 'TagBook',
     component:()=>import('../views/book/index.vue'),
   },
   {
@@ -42,9 +42,24 @@ export const routes: Array<RouteRecordRaw> = [
     component:()=>import('../views/word/index.vue'),
   },
   {
+    path: '/word/collect/:userWordId',
+    name: 'WordCollect',
+    component:()=>import('../views/word/index.vue'),
+  },
+  {
     path: '/collect',
     name: 'Collect',
     component:()=>import('../views/collect/index.vue'),
+  },
+  {
+    path: '/grade',
+    name: 'Grade',
+    component:()=>import('../views/grade/index.vue'),
+  },
+  {
+    path: '/setting',
+    name: 'Setting',
+    component:()=>import('../views/setting/index.vue'),
   },
 ]
 

@@ -17,7 +17,6 @@ service.interceptors.request.use(
         cancel
       })
     })
-    console.log(req)
     //设置token到header
     // @ts-ignore
     //   req.headers['AUTHORIZE_TOKEN'] = token
@@ -100,7 +99,6 @@ service.interceptors.response.use(
     //   message: err,
     //   duration: 2 * 1000
     // })
-  console.log(err)
     return Promise.reject(err)
   }
 )
