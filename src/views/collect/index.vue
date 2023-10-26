@@ -95,7 +95,6 @@ function playAudio(id: any) {
 
 
 function toReadWord(id:number){
-    console.log(id)
     router.push({
         path: '/word/collect/' + id,
         params:{

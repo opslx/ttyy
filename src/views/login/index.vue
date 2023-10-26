@@ -109,6 +109,7 @@ function login(){
               duration:1000
           })
         }else{
+          store.setUserId(res.data.userinfo.id)
           store.setToken(res.data.token)
           store.setUserInfo(res.data.userinfo)
           ElMessage.success({
@@ -131,6 +132,7 @@ function sign(){
                 duration:1000
         })
         }else{
+          store.setUserId(res.data.userinfo.id)
           store.setToken(res.data.token)
           store.setUserInfo(res.data.userinfo)
           ElMessage.success({

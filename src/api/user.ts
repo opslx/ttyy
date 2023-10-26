@@ -61,3 +61,11 @@ export function updateUserCollect (wordId:any,data:object) {
   })
 }
 
+
+export function updataUserInfo (userId:number,data:any) {
+	return request({
+		method: "PUT", 
+		url: `/user/user/${userId}/`,
+		data: data
+	})
+}

@@ -1,4 +1,26 @@
 <template >
+<el-row  class="setting-item-card" justify="center" >
+    <el-col :span="24" >
+        <el-card shadow="never" class="box-card">
+            <el-row>
+                <el-col :span="8">
+                    <el-text class="mx-1" size="large" tag="b">关于我们</el-text>   
+                </el-col>
+            </el-row>
+        </el-card>
+    </el-col>
+</el-row>
+<el-row  class="setting-item-card" justify="center" >
+    <el-col :span="24" >
+        <el-card shadow="never" class="box-card">
+            <el-row>
+                <el-col :span="8">
+                    <el-text class="mx-1" size="large" tag="b">隐私协议</el-text>   
+                </el-col>
+            </el-row>
+        </el-card>
+    </el-col>
+</el-row>
 <el-row justify="center">
     <el-col  :span="18">
         <el-card  @click.prevent="logout"  shadow="never" id="setting-buttom">
@@ -16,7 +38,6 @@ import { useBasicStore } from '@/store/basic';
 const router =  useRouter()
 const store = useBasicStore()
 function logout() {
-    console.log(11111111)
     store.$reset()
     store.resetState()
     removeCookieRefresh()

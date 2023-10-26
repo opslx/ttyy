@@ -39,3 +39,11 @@ export function getTagBook(data:object) {
 		data:data
 	})
 }
+
+export function searchWord (data:object) {
+	return request({
+		method: "GET", 
+		url: `/book/word_search/`,
+		data:data
+	})
+}

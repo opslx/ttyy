@@ -11,6 +11,7 @@
             <el-input
                 clearable
                 style="height:6vh"
+                @focus="toSearchPage"
                 v-model="input1"
                 size="large"
                 placeholder="查询单词"
@@ -130,6 +131,9 @@ function toReadWord(){
     })
 }
 
+function toSearchPage(){
+    router.push("/search")
+}
 
 
 </script>

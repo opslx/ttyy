@@ -61,6 +61,21 @@ export const routes: Array<RouteRecordRaw> = [
     name: 'Setting',
     component:()=>import('../views/setting/index.vue'),
   },
+  {
+    path: '/search',
+    name: 'Search',
+    component:()=>import('../views/search/index.vue'),
+  },
+  {
+    path: '/search/word/:WordId',
+    name: 'SearchWord',
+    component:()=>import('../views/word/index.vue'),
+  },
+  {
+    path: '/user/setting',
+    name: 'UserSetting',
+    component:()=>import('../views/userSetting/index.vue'),
+  },
 ]
 
 const router = createRouter({

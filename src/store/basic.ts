@@ -12,8 +12,9 @@ export const useBasicStore = defineStore('basic', {
       refresh:null,
       userId:null,
       getUserInfo: false,
+      searchWordHistoryArr:[] as Array<string>,
       refNum:0,
-      userInfo: { username: '', avatar: '' }, //user info
+      userInfo: { username: '', avatar: '',email:'' }, //user info
       //router
       allRoutes: [] as RouterTypes,
       buttonCodes: [],
@@ -35,7 +36,17 @@ export const useBasicStore = defineStore('basic', {
 
   },
   actions: {
-    
+    setsearchWordHistoryArr(word:string){
+      this.$patch((state:any) => {
+        if (state.searchWordHistoryArr.includes(word)) return
+        state.searchWordHistoryArr.unshift(word)
+      })
+    },
+    setUserId(userId:number){
+      this.$patch((state:any) => {
+        state.userId = userId
+      })
+    },
     setBook(book:number){
       this.$patch((state:any) => {
           state.bookId = book
@@ -76,6 +87,7 @@ export const useBasicStore = defineStore('basic', {
         state.getUserInfo = true
         state.userInfo.username = userinfo.username
         state.userInfo.avatar = userinfo.avatar
+        state.userInfo.email = userinfo.email
         console.log(state)
       })
     },

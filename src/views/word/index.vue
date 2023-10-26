@@ -66,22 +66,33 @@
         </el-col>
     </el-row>
     </template>
-    <el-row justify="center">
-    <el-col @click.prevent="getClickWord(word.last)" :span="10" :offset="1">
-        <el-card  shadow="never" class="word-buttom" id="word-previous-buttom">
+    <template  v-if="isSearch">
+        <el-col :span="8" :offset="2">
+        <el-card @click="router.back()"  shadow="never" class="word-buttom-return" id="word-previous-buttom">
             <div class="word-next-buttom-text" > 	
-                previous
+                返回搜索
             </div>
         </el-card>
     </el-col>
-    <el-col @click.prevent="getClickWord(word.next)" :span="10" :offset="1">
-        <el-card  shadow="never" class="word-buttom"  id="word-next-buttom">
-            <div class="word-next-buttom-text" > 	
-                next
-            </div>
-        </el-card>
-    </el-col>
-</el-row>
+    </template>
+    <template v-else>
+        <el-row justify="center">
+            <el-col @click.prevent="getClickWord(word.last)" :span="10" :offset="1">
+                <el-card  shadow="never" class="word-buttom" id="word-previous-buttom">
+                    <div class="word-next-buttom-text" > 	
+                        previous
+                    </div>
+                </el-card>
+            </el-col>
+            <el-col @click.prevent="getClickWord(word.next)" :span="10" :offset="1">
+                <el-card  shadow="never" class="word-buttom"  id="word-next-buttom">
+                    <div class="word-next-buttom-text" > 	
+                        next
+                    </div>
+                </el-card>
+            </el-col>
+        </el-row>
+    </template>
 </template>
 <script setup lang="ts">
 import { ref } from 'vue';
@@ -91,11 +102,16 @@ import { useRouter } from 'vue-router'
 import { ElMessage } from 'element-plus'
 import { useBasicStore } from '@/store/basic';
 import {word} from "@/utils/export"
-let {getUserInfo}  = useBasicStore()
+
+const {getUserInfo}  = useBasicStore()
 const router = useRouter()
 const routerName = router.currentRoute.value.name
 const collect = ref(false)
+const isSearch = ref(false)
+
 let currentAudioId:any = null;
+
+
 
 function get_user_collect_word(userWordId:any){
     if (userWordId){
@@ -114,9 +130,10 @@ function get_user_collect_word(userWordId:any){
 }
 
 function get_word(wordId:any,book_data:object){
-    if (wordId){
-    getWord(wordId,book_data).then(res => {
-    word.value = res.data
+    if (wordId !== false){
+        getWord(wordId,book_data).then(res => {
+        
+        word.value = res.data
     }).catch(err => {
         console.log(err);
         
@@ -127,7 +144,6 @@ function get_word(wordId:any,book_data:object){
         })
     }
 }
-
 if (routerName === "Word"){
     const book_data = {book:router.currentRoute.value.params.bookId}
     getBookWord(book_data).then(res => {
@@ -136,7 +152,10 @@ if (routerName === "Word"){
         console.log(err);
         
     })
-}else{
+}else if(routerName === "SearchWord") {
+    isSearch.value = true
+    get_word(router.currentRoute.value.params.WordId,{})
+    }else{
     get_user_collect_word(router.currentRoute.value.params.userWordId)
 }
 
@@ -251,5 +270,13 @@ html{
 }
 .word-text-item{
     margin-top: 1vh;
+}
+.word-buttom-return{
+    position:fixed;
+    height: 2.8em;
+    border: none;
+    top: 92%;
+    width: 80vw;
+    border-radius:1.5em;
 }
 </style>
