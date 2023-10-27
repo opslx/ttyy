@@ -69,3 +69,11 @@ export function updataUserInfo (userId:number,data:any) {
 		data: data
 	})
 }
+
+export function updataUserAvatar (data:any) {
+	return request({
+		method: "POST", 
+		url: `/user/upload/`,
+		data: data
+	})
+}

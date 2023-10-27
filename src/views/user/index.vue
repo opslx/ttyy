@@ -63,7 +63,7 @@ function router_to_path(path:string){
 }
 
 const UserSettingItem = [
-    {image:'word_book.png',text:"单词书",path:"/home"},
+    {image:'word_book.png',text:"用户信息",path:"/user/setting"},
     {image:'word_collection.png',text:"单词收藏",path:"/collect"},
     {image:'glossary.png',text:"生词本",path:"/collect"},
     {image:'setting.png',text:"设置",path:"/setting"},
