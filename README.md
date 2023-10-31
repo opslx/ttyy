@@ -1,11 +1,11 @@
-# 基于Vue + vite + ts的英语学习前端项目
+# 基于Vue + vite + ts的英语学习手机web前端项目
 ## 首页页面图片展示
 ![image](./public/home-A.png)
 ## 学习页面图片展示
 ![image](./public/word-A.png)
 
 ## 网站地址
-[opslx.com](www.opslx.com)
+[http://www.opslx.com](http://www.opslx.com)
 
 ## 测试请使用以下命令：
 ```
