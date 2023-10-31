@@ -184,7 +184,7 @@ const handleExceed: UploadProps['onExceed'] = (files) => {
   upload.value!.handleStart(file)
 }
 </script>
-<style lang="scss"> 
+<style lang="scss" scoped> 
 
 .user-setting-box-card{
     border: none;

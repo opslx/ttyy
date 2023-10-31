@@ -39,7 +39,7 @@ function toTagBook(tag1,tag2){
     })
 }
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
     html{
     background-color: #FFFFFF !important;
 }

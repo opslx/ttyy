@@ -75,7 +75,7 @@ function login(){
 }
 
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
 .box-card{
     margin-top: 5vh;
     border: none;

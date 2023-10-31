@@ -126,7 +126,7 @@ function clearSearchWordArr(){
 }
 
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
 html{
     background-color: #FFFFFF!important;
     overflow:auto;

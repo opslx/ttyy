@@ -20,9 +20,9 @@
         </svg>
     </button>
 
-    <button @click="Active(3)" class="menu__item" :class="{active: liActiveClass == 3}" style="--bgColorItem: #e0b115;" > 
+    <!-- <button @click="Active(3)" class="menu__item" :class="{active: liActiveClass == 3}" style="--bgColorItem: #e0b115;" > 
 <svg xmlns="http://www.w3.org/2000/svg" class="tab-icon" viewBox="0 0 24 24" ><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path></svg>
-    </button>
+    </button> -->
 
     <button @click="Active('User')" class="menu__item" :class="{active: liActiveClass == 'User'}" style="--bgColorItem:#65ddb7;">
 <svg xmlns="http://www.w3.org/2000/svg" class="tab-icon"  viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>

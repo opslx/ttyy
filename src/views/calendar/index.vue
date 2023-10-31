@@ -28,5 +28,5 @@ getUserCalendar().then(res => {
   calendar.value = res.data
 })
 </script>
-<style lang="">
+<style lang="scss" scoped>
 </style>

@@ -47,7 +47,7 @@ function logout() {
 }
 
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
 #setting-buttom{
     position: fixed;
     height: 3em;

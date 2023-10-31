@@ -137,7 +137,7 @@ function toSearchPage(){
 
 
 </script>
-<style>
+<style lang="scss" >
 html{
     overflow:hidden;
 }
