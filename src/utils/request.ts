@@ -3,6 +3,7 @@ import { ElMessage, ElMessageBox,ElNotification } from 'element-plus'
 import {resetToken} from "@/api/user";
 import { useBasicStore } from '@/store/basic'
 import {getCookieRefresh,removeCookieRefresh,removeCookieToken} from "@/utils/cookie";
+import {useRouter} from 'vue-router'
 //使用axios.create()创建一个axios请求实例
 const service = axios.create()
 
@@ -47,7 +48,7 @@ service.interceptors.response.use(
         case 201:
               ElNotification({
                 title: 'Success',
-                message: 'This is a success message',
+                message: 'Success',
                 type: 'success',
               })
             return res
@@ -65,40 +66,20 @@ service.interceptors.response.use(
   },
   //响应报错
   (err) => {
-     const { setrefNum, clearRefNum,refNum } = useBasicStore()
     switch (err.response.status) {
         case 401:
-            setrefNum()
-
-            if (getCookieRefresh() && refNum < 3){
-                const data = {'refresh':getCookieRefresh()}
-                resetToken(data).then(response=>{
-                    useBasicStore().setToken(response['access'])
-                })
-                err.config.url = err.config.url.replace("/api", "")
-                return service(err.config).then(response => {
-                  clearRefNum()
-                  return response
-            })}else{
-                err = "用户名或密码错误"
-                break
-            }
-        case 400:
-              ElNotification({
-                title: 'Error',
-                message: 'This is an error message',
-                type: 'error',
-              })
-              break
-        case 403:
-            removeCookieRefresh()
-            removeCookieToken()
-            localStorage.clear()
+          useBasicStore().$reset()
+          useBasicStore().resetState()
+          removeCookieRefresh()
+          removeCookieToken()
+          ElMessageBox.confirm('请重新登录', {
+            confirmButtonText: '重新登录',
+            cancelButtonText: '取消',
+            type: 'warning'
+          }).then(() => {
+            useBasicStore().resetStateAndToLogin()
+          })
     }
-    ElMessage.error({
-      message: err,
-      duration: 2 * 1000
-    })
     return Promise.reject(err)
   }
 )

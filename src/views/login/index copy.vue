@@ -39,26 +39,38 @@
             </el-col>
         </el-row>
     </el-form>
+<el-row style="margin-top:2vh"  justify="center">
+    <el-col style="text-align:end" :span="20">
+        <el-text tag="b" class="mx-1" type="info">忘记密码</el-text>
+    </el-col>
+</el-row>
 <el-row  class="SI" justify="center">
     <el-col @click="submitForm(ruleFormRef)" class="login-buttom" :span="20">
         <div style="text-align:center;margin-top:0.6rem;color: #FFFFFF"> 	
-            注册账号
+            {{LoginMsg}}
          </div>
     </el-col>
 </el-row>
 </div>
+
+<el-row style="margin-top:2vh"  justify="center">
+    <el-col style="text-align:center" :span="20">
+        <el-text class="mx-1" type="primary">创建账户</el-text>
+    </el-col>
+</el-row>
 </template>
 <script setup lang="ts">
 import { reactive,ref } from 'vue'
 import { User,Lock } from '@element-plus/icons-vue'
 import type { FormInstance, FormRules } from 'element-plus'
-import { userLogin } from '@/api/user';
+import { setUser } from '@/api/user';
 import { useBasicStore } from '@/store/basic'; 
 import { useRouter } from 'vue-router'
 
 const store = useBasicStore()
 const route = useRouter()
 let buttonColor = ref('#F7B200')
+
 interface RuleForm {
   email: string
   password: string
@@ -86,7 +98,7 @@ const submitForm = async (formEl: FormInstance | undefined) => {
     if (valid) {
       console.log(ruleForm);
       
-      userLogin(ruleForm).then((res) => {
+      setUser(ruleForm).then((res) => {
         store.setToken(res.data.token)
         store.setUserInfo(res.data.userinfo)
         route.push("/")
@@ -101,6 +113,7 @@ const submitForm = async (formEl: FormInstance | undefined) => {
   })
 }
 
+let LoginMsg = ref("登录")
 
 
 </script>

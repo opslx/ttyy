@@ -9,7 +9,7 @@
                 <el-avatar :size="50" :src="userinfo.avatar" />
             </el-col>
             <template v-if="getUserInfo">
-            <el-col style="margin-top:1em;" :span="8" :offset="12">
+            <el-col style="margin-top:1em;" :span="14" :offset="6">
                 <el-text size="large" tag="b"> <div style="color: #FFFFFF">{{userInfo.username}}</div></el-text>   
             </el-col>
             </template>
@@ -34,7 +34,7 @@
         shadow="never"
          class="box-card">
          <template v-for="item in UserSettingItem">
-            <el-row  class="user-card-item" justify="start" >
+            <el-row @click="router_to_path(item.path)"  class="user-card-item" justify="start" >
                 <el-col :span="4" >
                     <el-image style="width: 1.7em; height: 1.7em" :src="item.image" fit="fill" />      
                 </el-col>
@@ -51,49 +51,44 @@
 import {useRouter} from 'vue-router'
 import { useBasicStore } from '@/store/basic'; 
 import { ref } from 'vue'
-// import {getCookieToken} from '@/utils/cookie'
-// import {getUserInfo} from '@/api/user'
-// import type { AxiosResponse } from 'axios';
 
-
+const router =  useRouter()
 const {userInfo,getUserInfo} = useBasicStore()
 let userinfo = ref(userInfo)
 
-// const token = getCookieToken()
-// if (token !== null){
-//     getUserInfo().then((res:AxiosResponse) => {
-//         console.log(res)
-//         userinfo.value = res.userinfo
 
-//     })
-// }
+function router_to_path(path:string){
+    router.push(path)
+
+}
 
 const UserSettingItem = [
-    {image:'word_book.png',text:"单词书"},
-    {image:'word_collection.png',text:"单词收藏"},
-    {image:'glossary.png',text:"生词本"},
-    {image:'setting.png',text:"设置"},
+    {image:'word_book.png',text:"用户信息",path:"/user/setting"},
+    {image:'word_collection.png',text:"单词收藏",path:"/collect"},
+    {image:'glossary.png',text:"生词本",path:"/collect"},
+    {image:'setting.png',text:"设置",path:"/setting"},
 ]
-const router =  useRouter()
+
 function login(){
     router.push('/login')
 
 }
 
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
 .box-card{
-    margin-top: 1vh;
+    margin-top: 5vh;
     border: none;
     border-radius: 1em;
 
 }
 .setting-card{
+    margin-top: -3vh;
     border: none;
     border-radius: 1em;
 
 }
 .user-card-item{
-    margin-top: 3.5vh;
+    margin-top: 5vh;
 }
 </style>
